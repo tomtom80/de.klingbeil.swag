@@ -7,6 +7,10 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String email;
+	
+	public User() {
+		// spring repository needs an public no arg constructor
+	}
 
 	private User(Builder builder) {
 		this.id = builder.id;

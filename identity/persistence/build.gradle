@@ -1,0 +1,8 @@
+dependencies {
+    compile project(":domain")
+    
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+
+    testCompile("de.flapdoodle.embed:de.flapdoodle.embed.mongo:1.48.0")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}

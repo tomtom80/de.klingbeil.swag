@@ -1,0 +1,54 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+ apply plugin: 'eclipse'
+ apply plugin: 'spring-boot'
+
+repositories {
+    mavenCentral()
+}
+
+allprojects {
+    
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	repositories {
+		mavenCentral()
+	}
+
+    tasks.withType(JavaCompile) {
+        options.incremental = true
+    }
+}
+
+subprojects {
+    group = 'de.klingbeil'
+    version = '1.0.0'
+    
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+	apply plugin: 'spring-boot'
+    
+    dependencies {
+    	//compile("org.springframework.boot:spring-boot-starter-security")
+    	//compile("org.springframework.boot:spring-boot-starter-aop")
+    	//compile("org.springframework.boot:spring-boot-starter-batch")
+    	compile("org.springframework.boot:spring-boot-starter-web")
+    	//compile("org.springframework.boot:spring-boot-starter-ws")
+    	//compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    	//compile("org.springframework.boot:spring-boot-starter-actuator")
+
+
+    	testCompile("org.springframework.boot:spring-boot-starter-test")
+	}
+}

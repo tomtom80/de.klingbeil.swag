@@ -1,4 +1,6 @@
+include 'service'
 include 'domain'
 include 'persistence'
+
 
 rootProject.name = 'identity'

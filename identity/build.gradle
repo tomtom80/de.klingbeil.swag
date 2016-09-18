@@ -32,8 +32,6 @@ allprojects {
 }
 
 subprojects {
-    group = 'de.klingbeil'
-    version = '1.0.0'
     
     apply plugin: 'java'
     apply plugin: 'eclipse'

@@ -9,9 +9,9 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
-
+ apply plugin: 'java'
  apply plugin: 'eclipse'
- apply plugin: 'spring-boot'
+ 
 
 repositories {
     mavenCentral()
@@ -38,14 +38,7 @@ subprojects {
 	apply plugin: 'spring-boot'
     
     dependencies {
-    	//compile("org.springframework.boot:spring-boot-starter-security")
-    	//compile("org.springframework.boot:spring-boot-starter-aop")
-    	//compile("org.springframework.boot:spring-boot-starter-batch")
     	compile("org.springframework.boot:spring-boot-starter-web")
-    	//compile("org.springframework.boot:spring-boot-starter-ws")
-    	//compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    	//compile("org.springframework.boot:spring-boot-starter-actuator")
-
 
     	testCompile("org.springframework.boot:spring-boot-starter-test")
 	}

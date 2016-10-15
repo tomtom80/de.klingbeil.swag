@@ -1,23 +1,22 @@
 buildscript {
     ext {
-        springBootVersion = '1.4.0.RELEASE'
+        springBootVersion = '1.4.1.RELEASE'
     }
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+     	classpath 'net.researchgate:gradle-release:2.3.0'
+     	classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
     }
-}
- apply plugin: 'java'
- apply plugin: 'eclipse'
- 
-
-repositories {
-    mavenCentral()
 }
 
 allprojects {
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+    apply plugin: 'net.researchgate.release'
     
 	sourceCompatibility = 1.8
 	targetCompatibility = 1.8
@@ -29,17 +28,36 @@ allprojects {
     tasks.withType(JavaCompile) {
         options.incremental = true
     }
+    release {
+        tagTemplate = '$name-$version'
+    }
+
+    task(startmessage) << {
+        println 'starting build'
+    }
+
+    task(printversion) << {
+        println project.version
+    }
+
+    beforeReleaseBuild.dependsOn startmessage
+    afterReleaseBuild.dependsOn printversion
 }
 
 subprojects {
     
-    apply plugin: 'java'
-    apply plugin: 'eclipse'
-	apply plugin: 'spring-boot'
     
     dependencies {
     	compile("org.springframework.boot:spring-boot-starter-web")
 
     	testCompile("org.springframework.boot:spring-boot-starter-test")
 	}
+	
+	apply plugin: 'io.spring.dependency-management'
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+        }
+    }
 }

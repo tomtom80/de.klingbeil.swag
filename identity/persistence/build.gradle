@@ -2,4 +2,5 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     
 	testCompile('com.github.fakemongo:fongo:2.0.6')
+	testCompile("org.springframework.boot:spring-boot-starter-test")
 }

@@ -1,6 +1,6 @@
 package de.klingbeil.swag.persistence.repository;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -30,6 +30,17 @@ public class UserRepositoryTest {
 		List<User> users = userRepository.findAll();
 
 		assertEquals(1, users.size());
+	}
+	
+	@Test
+	public void testFindByLoginName() throws Exception {
+		String loginName = "rzufall";
+		User build = new User.Builder(322L).loginName(loginName ).build();
+		userRepository.save(build);
+		
+		User result = userRepository.findByLoginName(loginName);
+
+		assertEquals(loginName, result.getLoginName());
 	}
 	
 }

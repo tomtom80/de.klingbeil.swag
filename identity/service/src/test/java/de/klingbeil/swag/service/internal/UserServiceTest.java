@@ -11,7 +11,6 @@ import org.mockito.MockitoAnnotations;
 
 import de.klingbeil.swag.persistence.model.User;
 import de.klingbeil.swag.persistence.repository.UserRepository;
-import de.klingbeil.swag.service.internal.UserServiceImpl;
 
 public class UserServiceTest {
 
@@ -38,4 +37,14 @@ public class UserServiceTest {
 		verify(userRepository).save(user);
 	}
 
+	@Test
+	public void testFindUserByLoginName() throws Exception {
+		String loginName = "loginName";
+		User user = new User.Builder(1L).loginName(loginName).build();
+		when( userRepository.findByLoginName(loginName)).thenReturn(user);
+		
+		User result = service.findByLoginName(loginName);
+		
+		assertSame(user, result);
+	}
 }

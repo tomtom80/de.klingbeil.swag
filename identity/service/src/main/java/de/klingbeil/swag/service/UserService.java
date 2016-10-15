@@ -6,4 +6,6 @@ public interface UserService {
 
 	User persist(User user);
 
+	User findByLoginName(String loginName);
+
 }

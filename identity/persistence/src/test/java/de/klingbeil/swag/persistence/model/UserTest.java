@@ -1,10 +1,8 @@
 package de.klingbeil.swag.persistence.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import de.klingbeil.swag.persistence.model.User;
 
 public class UserTest {
 
@@ -54,4 +52,5 @@ public class UserTest {
 
 		assertEquals(email, user.getEmail());
 	}
+	
 }
